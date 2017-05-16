@@ -120,7 +120,6 @@ $('button').on('click', function() {
                 'where woeid in (select woeid from geo.places(1) where text="' + cityList[i] + '") and u="c"&format=json',
                 function(data) {
                     cityTemp[i] = data.query.results.channel.item.condition.temp;
-                    console.log(cityList[i] + "" + cityTemp[i]);
                     $('.listTemp' + i).text(cityTemp[i] + "℃");
                 })
             // $('button').text($(this).text()+"℃");
@@ -137,7 +136,6 @@ $('#dropdown li').on('click', function() {
     getJsonUntilSuccess('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast ' +
         'where woeid in (select woeid from geo.places(1) where text="' + city + '") and u="c"&format=json',
         function(data) {
-            console.log(data);
             var currentTemperature = data.query.results.channel.item.condition.temp;
             var currentDate = data.query.results.channel.item.condition.date.substring(5, 16);
             var currentText = data.query.results.channel.item.condition.text;
